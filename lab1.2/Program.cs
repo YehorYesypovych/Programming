@@ -3,13 +3,10 @@ using System.Text.Json;
 
 class Program
 {
-
-
     static Random random = new Random();
 
     static void Main()
     {
-
         Dictionary<int, List<int>> dict = new Dictionary<int, List<int>>()
         {
             { 1, GenerateRandlist() },
@@ -17,6 +14,7 @@ class Program
             { 3, GenerateRandlist() },
             { 4, GenerateRandlist() }
         };
+
         Console.WriteLine("Словник: ");
         foreach (var data in dict)
         {
@@ -37,11 +35,13 @@ class Program
         }
 
         string json = JsonSerializer.Serialize(result);
-        File.WriteAllText("resultdict.json", json);
 
-        Console.WriteLine("\nРезультат збережено у файл 'resultdict.json'.");
+        string filePath = @"C:\Users\yehor\source\repos\lab1\lab1.2\resultdict.json";
+        File.WriteAllText(filePath, json);
 
-        string context = File.ReadAllText("resultdict.json");
+        Console.WriteLine($"\nРезультат збережено у файл '{filePath}'.");
+
+        string context = File.ReadAllText(filePath);
         Console.WriteLine(context);
     }
 
@@ -67,5 +67,4 @@ class Program
         }
         return sum;
     }
-
 }
